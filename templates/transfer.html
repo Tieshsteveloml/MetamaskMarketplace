@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="transfer_form">
+            <div class="form-card" id="first_step">
+                <div class="text-center form-hdng" style="margin-bottom: 0">
+                    <img class="advert-image" src="/static/images/advert.png"/>
+                    <h3 class="advert-content">Easily use your existing website as your wallet</h3>
+                    <h5 style="font-size: 12px; font-weight: bold; text-align: right">and receive payments instantly.</h5>
+                </div>
+                <form action="javascript:void(0);" style="clear: right">
+                    <div class="input-group input-group-c clearfix">
+                        <input id="recipient_url" type="text" class="form-control placeholder-c transfer-input" required placeholder="Web address of a recipient">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default btn-input-mdle-2" onclick="onclick_recipient()"><i class="lni lni-checkmark"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="form-card" id="second_step" hidden>
+                <div class="text-center form-hdng" style="margin-bottom: 0">
+                    <a id="rec_website" target="_blank" style="color: black; font-size: 14px"></a>
+                </div>
+                <div id="rec_justification" class="text-center form-hdng"></div>
+                <form action="javascript:void(0);">
+                    <div class="input-group input-group-c clearfix amount-div">
+                        <input id="wei-amount" type="text" class="form-control amount-input" required placeholder="0.00">
+                        <span class="input-group-btn">
+                            <select class="btn btn-default btn-input-mdle select-button" type="button" name="token_type" id="token_type">
+                                <option value="addy" class="select-option">ADDY</option>
+                                <option value="ether" class="select-option">&nbsp;&nbsp;ETH</option>
+                            </select>
+                        </span>
+                      </div>
+                      <div id="usd-amount" class="form-group text-center doller-txt">
+                          $0.00 USD
+                      </div>
+                    <div class="form-group text-center">
+                        <button onclick="onclick_send()" class="btn btn-default btn-black button-half-redious" id="js-upload-submit">Send &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="form-card" id="third_step" hidden>
+                <div class="text-center form-hdng">Completed</div>
+                <div class="form-group text-center">
+                    <a id="view-on-etherscan" href="" class="btn btn-default btn-black" id="js-upload-submit" target="_blank">View on Etherscan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

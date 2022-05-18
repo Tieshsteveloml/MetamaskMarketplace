@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="register_form"> <!--<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">-->
+            <div class="form-card">
+                <div class="text-center form-hdng">Register a Web Address</div>
+                <form action="javascript:void(0);">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="reg_url" placeholder="URL" required>
+                    </div>
+                    <div class="form-group">
+                     <input type="text" class="form-control" id="reg_justification" placeholder="Justification for registration" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group files color">
+                            <input type="file" class="form-control" id="file_path" required>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button onclick="onclick_submit()" class="btn btn-default btn-block btn-black button-half-redious" id="js-upload-submit">Submit for verification</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

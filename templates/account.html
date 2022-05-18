@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="register_form"> <!--<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">-->
+            <div class="form-card">
+                <div class="text-center form-hdng">My Account</div>
+                <div class="text-center form-hdng" style="margin-bottom: 0">
+                    <h5 style="color: #b9b9b9; font-size: 20px; font-weight: bold;">Below are the unique resource locators (URLs) or address, "addy" for short, registered to your wallet below. You may receive payments to these URLs using addy. Addy will redirect those payments to your connected wallet.</h5>
+                </div>
+                <div class="text-center form-hdng" style="margin-bottom: 0; margin-top: -10px">
+                    {% if address %}
+                        <label class="account-label"><a href="https://etherscan.io/address/{{ address }}" target="_blank">{{ address }}</a></label>
+                    {% endif %}
+                </div>
+                <div class="text-center form-hdng">
+                    {% for item in urls %}
+                        <a class="account-url-label" href="http://{{ item.url }}" target="_blank">{{ item.url }}</a>
+                        <h5 class="account-date-label">Registered on {{ item.create_date }}</h5>
+                        <hr class="account-line">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

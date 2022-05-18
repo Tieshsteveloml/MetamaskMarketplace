@@ -1,0 +1,6 @@
+pycoingecko
+requests
+django==2.2.6
+python-dateutil
+mysqlclient
+web3

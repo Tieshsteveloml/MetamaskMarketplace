@@ -1,0 +1,81 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/fonts/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="/static/fonts/LineIcons-Package-2.0/WebFont/font-css/LineIcons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/RoobertFont.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/static/images/addylogo-01-small.png" type="image/x-icon">
+</head>
+<body>
+{% csrf_token %}
+    <header>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-5">
+                <div class="logo-c">
+                    <a href="/"><img src="/static/images/addylogo-01-small.png" style="width: 60px"/></a>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-push-6 col-xs-7 side_header">
+                <div class="right-nav-c text-right">
+                    <button class="btn btn-default btn-black" id="connectButton" style="width: 150px; height: 41px;"></button>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-pull-3 col-xs-12" style="padding-top: 1px;">
+                <div class="text-center tab-wrapper">
+                    <ul>
+                        {% for menu in menu_data %}
+                            {% if activated_menu == menu.id %}
+                                {% if menu.id == 2 %}
+                                    <li class="active"><a onclick="onclick_load_account();">{{ menu.name }}</a></li>
+                                {% else %}
+                                    <li class="active"><a href={{ menu.url }}>{{ menu.name }}</a></li>
+                                {% endif %}
+                            {% else %}
+                                {% if menu.id == 2 %}
+                                    <li><a onclick="onclick_load_account();">{{ menu.name }}</a></li>
+                                {% else %}
+                                    <li><a href={{ menu.url }}>{{ menu.name }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {% block page_content %}
+
+        {% endblock %}
+    </div>
+
+<!-- Core js -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/node_modules/@metamask/onboarding/dist/metamask-onboarding.bundle.js" defer></script>
+    <script src="/static/js/contract.js" defer></script>
+
+    <script type="text/javascript">
+
+    function onclick_load_account() {
+        if (currentAccount)
+            window.location.href = '{% url "_account" token=123 %}'.replace('123', currentAccount);
+        else
+            window.location.href = '{% url "account" %}';
+    }
+    </script>
+</body>
+</html>
